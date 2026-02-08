@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>AI Makeup Coach</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body { margin:0; background:black; color:white; font-family:sans-serif; }
+    video { position:fixed; top:0; left:0; width:100%; height:100%; object-fit:cover; }
+    #ui { position:fixed; bottom:20px; left:0; width:100%; text-align:center; }
+    button { padding:15px; font-size:18px; border-radius:10px; border:none; background:#ff69b4; color:white; }
+  </style>
+</head>
+<body>
+
+<video id="camera" autoplay playsinline></video>
+
+<div id="ui">
+  <h2>AI Makeup Coach</h2>
+  <button onclick="startAI()">🎤 Talk to your AI</button>
+</div>
+
+<script>
+async function startCamera(){
+  const stream = await navigator.mediaDevices.getUserMedia({video:true});
+  document.getElementById("camera").srcObject = stream;
+}
+startCamera();
+
+function speak(text){
+  let msg = new SpeechSynthesisUtterance(text);
+  speechSynthesis.speak(msg);
+}
+
+function startAI(){
+  speak("Hi beautiful. Let's start your makeup. Apply foundation gently to your cheeks.");
+}
+</script>
+
+</body>
+</html>
